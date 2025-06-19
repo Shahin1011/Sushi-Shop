@@ -41,7 +41,7 @@ class IntroPage extends StatelessWidget {
               "THE TASTE OF JAPANESE FOOD",
               style: GoogleFonts.dmSerifDisplay(
                   fontSize: 44,
-                  color: Colors.white
+                  color: Colors.white,
               ),
             ),
 
@@ -59,7 +59,14 @@ class IntroPage extends StatelessWidget {
             SizedBox(height: 25,),
 
             //get started button
-            MyButton(text: "Get Started")
+            MyButton(
+              text: "Get Started",
+              onTap: (){
+                //go to the menu page
+                Navigator.pushNamed(context, '/menupage');
+              },
+
+            )
           ],
         ),
       )
