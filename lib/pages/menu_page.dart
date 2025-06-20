@@ -4,6 +4,7 @@ import 'package:sushishop/theme/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sushishop/components/food_tile.dart';
 import 'package:sushishop/models/food.dart';
+import 'package:sushishop/pages/food_details_page.dart';
 
 
 
@@ -37,20 +38,32 @@ class _MenuPageState extends State<MenuPage> {
 
     Food(
         name: "Many Sushi",
-        price: "20.00",
+        price: "40.00",
         imagePath: "assets/Images/many_shusi.png",
-        rating: "4.9"
+        rating: "4.5"
     ),
 
     //tuna
     Food(
         name: "Salmon Eggs",
-        price: "30.00",
+        price: "50.00",
         imagePath: "assets/Images/slamon_eggs.png",
-        rating: "4.8"
+        rating: "4.3"
     ),
 
   ];
+
+  //navigate to food item details page
+  void navigateToFoodDetails(int index){
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => FoodDetailsPage(
+          food: foodMenu[index],
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context){
@@ -126,7 +139,8 @@ class _MenuPageState extends State<MenuPage> {
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.white),
                   borderRadius: BorderRadius.circular(20),
-                )
+                ),
+                hintText: "Search here..",
               ),
             ),
           ),
@@ -154,13 +168,64 @@ class _MenuPageState extends State<MenuPage> {
                 itemCount: foodMenu.length,
                 itemBuilder: (context, index) => FoodTile(
                   food: foodMenu[index],
+                  onTap: () => navigateToFoodDetails(index),
                 ),
               ),
           ),
 
+          SizedBox(height: 25,),
 
+          //popular food
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.grey[100],
+              borderRadius: BorderRadius.circular(20),
+            ),
+            margin: EdgeInsets.only(left: 25, right: 25, bottom: 25),
+            padding: EdgeInsets.all(20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    //image
+                    Image.asset(
+                      'assets/Images/slamon_eggs.png',
+                      height: 100,
+                    ),
+
+                    SizedBox(width: 20,),
+
+                    //name & price
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        //name
+                        Text(
+                          "Salmon Eggs",
+                          style: GoogleFonts.dmSerifDisplay(fontSize: 18),
+                        ),
+
+                        //price
+                        Text(
+                          '\$50.00',
+                          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+
+                //heart
+                Icon(
+                  Icons.favorite_outline,
+                  color: Colors.grey,
+                  size: 28,
+                )
+              ],
+            ),
+          ),
         ],
-
       ),
 
     );

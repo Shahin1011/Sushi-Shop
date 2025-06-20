@@ -26,7 +26,7 @@ class MyButton extends StatelessWidget {
               style: TextStyle(color: Colors.white),
             ),
 
-            SizedBox(height: 10,),
+            SizedBox(width: 10,),
 
             //icon
             Icon(Icons.arrow_forward, color: Colors.white,),
