@@ -1,0 +1,13 @@
+* linguist-language=Dart
+
+# Optional: exclude native and build files from language stats
+android/** linguist-vendored
+ios/** linguist-vendored
+build/** linguist-vendored
+web/** linguist-vendored
+.mel/** linguist-vendored
+test/** linguist-vendored
+
+# Ignore dependency/config files
+*.lock linguist-generated
+*.yaml linguist-generated
